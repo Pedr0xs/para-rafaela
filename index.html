@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rafaela, você é o amor da minha vida ❤</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#telaInicial {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #220000, #000);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    color: white;
+}
+
+#btnIniciar {
+    font-size: 28px;
+    padding: 20px 35px;
+    border-radius: 50px;
+    border: none;
+    background: crimson;
+    color: white;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+#aviso {
+    margin-bottom: 20px;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+#frases {
+    position: absolute;
+    color: white;
+    font-size: 26px;
+    width: 100%;
+    top: 15%;
+    text-shadow: 0 0 10px pink;
+}
+
+.frase {
+    opacity: 0;
+    transition: opacity 2s;
+    margin: 10px 0;
+}
+
+#final {
+    position: absolute;
+    width: 100%;
+    bottom: 15%;
+    font-size: 38px;
+    color: pink;
+    text-shadow: 0 0 15px red;
+    display: none;
+}
+
+.foto {
+    position: absolute;
+    width: 200px;
+    border-radius: 20px;
+    animation: float 12s infinite linear;
+    box-shadow: 0 0 20px pink;
+}
+
+@keyframes float {
+    0% { transform: translateY(120vh) scale(1); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-300px) scale(1.1); opacity: 0; }
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: subir 5s linear forwards;
+    text-shadow: 0 0 8px red;
+}
+
+@keyframes subir {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Música -->
+<audio id="bgm" src="musica.mp3" loop></audio>
+
+<!-- Tela inicial -->
+<div id="telaInicial">
+    <div id="aviso">🔊 Clique para ativar o som</div>
+    <button id="btnIniciar" onclick="iniciarTudo()">💖 Iniciar Surpresa 💖</button>
+</div>
+
+<!-- Frases -->
+<div id="frases">
+    <div class="frase">Não vejo a hora de te ver...</div>
+    <div class="frase">Você é meu mundo 💖</div>
+    <div class="frase">Cada momento com você é mágico...</div>
+    <div class="frase">Eu te amo demais...</div>
+    <div class="frase">Pedro + Rafa = Para sempre 💞</div>
+</div>
+
+<!-- Mensagem final -->
+<div id="final">Rafaela, você é o amor da minha vida 💕</div>
+
+<!-- Fotos -->
+<img src="momentossss.jpeg" class="foto" style="left:5%;">
+<img src="usss.jpeg" class="foto" style="right:5%;">
+<img src="wee love.jpeg" class="foto" style="left:30%;">
+<img src="WhatsApp Image 2025-11-26 at 02.22.55.jpeg" class="foto" style="right:30%;">
+<img src="WhatsApp Image 2025-11-26 at 02.22.56 (1).jpeg" class="foto" style="left:60%;">
+
+<script>
+
+function iniciarTudo() {
+
+    // Esconder tela inicial
+    document.getElementById("telaInicial").style.display = "none";
+
+    // Tocar música
+    const audio = document.getElementById("bgm");
+    audio.volume = 0.6;
+    audio.play().catch(err => {
+        alert("Se a música não tocar, toque na tela novamente 💗");
+        console.log(err);
+    });
+
+    // Frases animadas
+    let frases = document.querySelectorAll(".frase");
+    frases.forEach((frase, i) => {
+        setTimeout(() => {
+            frase.style.opacity = 1;
+        }, i * 3000);
+    });
+
+    // Mensagem final
+    setTimeout(() => {
+        document.getElementById("final").style.display = "block";
+    }, 16000);
+
+    // Corações subindo
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = (Math.random() * 30 + 15) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+
+    // Movimento das fotos
+    document.querySelectorAll(".foto").forEach((foto, i) => {
+        foto.style.animationDelay = `${i * 2}s`;
+        foto.style.top = Math.random() * window.innerHeight + "px";
+    });
+}
+
+</script>
+
+</body>
+</html>
